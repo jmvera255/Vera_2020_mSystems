@@ -1,14 +1,14 @@
 ## Please note this repo is still underconstruction
 
-## The scripts available in this repository were used for the work presented in
-## \<citation TBD\>
+The scripts available in this repository were used for the work presented in
+**\<citation TBD\>**
 
 ## Content
 
-The content available in this repository is as follows:
+The content available in this *repository* is as follows:
 
 	DataFiles/
-	-  NC_000913.2.fa: *Escherichia coli* str. K-12 substr. MG1655, complete genome	
+	-  NC_000913.2.fa: _Escherichia coli_ str. K-12 substr. MG1655, complete genome	
 	-  NC_011916.fa: *Caulobacter crescentus* NA1000, complete genome
 	-  ZM4.fa: compilation of *Z. mobilis* ZM4 chromosome and plasmid sequences
 	-  Thomason_2015.EcoTSS.bed: *E. coli* TSS annotations used as input for this study[1]
