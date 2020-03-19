@@ -1,4 +1,4 @@
-## Genome-scale transcriptionâtranslation mapping reveals features of Zymomonas mobilistranscription units and promoters
+## Genome-scale transcription–translation mapping reveals features of Zymomonas mobilis transcription units and promoters
 
 The scripts and files available in this repository were used for the work presented in
 **\<citation TBD\>**
