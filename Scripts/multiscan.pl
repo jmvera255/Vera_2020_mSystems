@@ -83,7 +83,6 @@ sub calcGS {
 		my $nd = 1 + cos($val);
 		$accessibility{$d} = $nd;
 		push(@Nsum, $nd);
-		#print "accessibility test: for d = $d, val = $val and n(d) = $nd\n";
 	}
 	$N += $_ for @Nsum;
 
@@ -92,7 +91,6 @@ sub calcGS {
 		my $val = $accessibility{$d}/$N;
 		my $g = -1 * (log($val)/log(2));
 		$GS{$d} = $g;
-		#print "For d = $d, val = $val, g = $g\n";
 	}
 
 	###add GS to Flexible
@@ -225,7 +223,6 @@ sub scan35 {
 		}
 
 		if($max > 0){
-			#print STDERR "For $s, best -35 scan = $max bits\n";
 			my(@best35);
 			for(my $j = 0; $j < 6; $j++){
 				my $pos = $opts{T} - $seq10{$s}[0] - $best + $j - 2;
@@ -274,14 +271,11 @@ sub read35 {
 	### print counts
 	foreach my $base (@alpha){
 		my @temp;
-		#print STDERR "Base\t";
 		foreach my $pos (sort {$a <=> $b} keys %counts){
 		#	print STDERR "$pos\t";
 			push(@temp, $counts{$pos}{$base});
 		}
-		#print STDERR "\n";
 		my $line = join("\t", @temp);
-		#print STDERR "$base\t$line\n";
 	}
 	### create frequency table
 	foreach my $base (@alpha){
@@ -363,7 +357,6 @@ sub cherrypick35{
 	print STDERR "old count = $oldCount, test = $test\n";
 
 	until($oldCount == $test){
-		#print "Next pass of cherry picking\n";
 		my $hits35_ref = \%hits35;
 		my $Riw_ref = buildRiw($hits35_ref);
 		my %Riw = %$Riw_ref;
@@ -380,7 +373,6 @@ sub cherrypick35{
 			}
 			else{
 				push(@bits, $sum);
-				#print "$seq\t$sum\n";
 			}
 		}
 		$n = scalar(keys %hits35);
