@@ -50,12 +50,13 @@ print STDERR "End time = $end\n";
 ### return hits with flex score > 0
 ### return TSS name, -10 seq, -10 spacing, -35 seq, -35 spacing, Ri(-10), Ri(-35), GS, Ri(total)
 sub evalFlex {
-	print "#TSS\t-35\tRi(-35)\tSpacing\t-10\tRi(-10)\tGS\tRi(total)\t-10spacing\n";
+	print "#TSS\t-35\tRi(-35)\tSpacer(nt)\t-10\tRi(-10)\tGS\tRi(total)\tDiscriminator(nt)\n";
 	foreach my $TSS (keys %flexible){
 		my $Ritotal = 0;
 		$Ritotal += $_ for @{$flexible{$TSS}};
 		if($Ritotal > 0){
-			print "$TSS\t$hits35{$TSS}[1]\t$flexible{$TSS}[1]\t$hits35{$TSS}[0]\t";
+			my $spacer = $hits35{$TSS}[0] - 6;
+			print "$TSS\t$hits35{$TSS}[1]\t$flexible{$TSS}[1]\t$spacer\t";
 			my @seq = split("",$seq10{$TSS}[1]);
 			my @outSeq;
 			for(my $i = $window10[0]; $i < $window10[0] + $window10[1]; $i++){
@@ -63,7 +64,8 @@ sub evalFlex {
 			}
 			my $out10 = join("",@outSeq);
 			print "$out10\t$flexible{$TSS}[0]\t$flexible{$TSS}[2]\t$Ritotal\t";
-			print "$seq10{$TSS}[0]\n";
+			my $discriminator =  $seq10{$TSS}[0] - 5;
+			print "$discriminator\n";
 		}
 	}
 }
@@ -83,7 +85,6 @@ sub calcGS {
 		my $nd = 1 + cos($val);
 		$accessibility{$d} = $nd;
 		push(@Nsum, $nd);
-		#print "accessibility test: for d = $d, val = $val and n(d) = $nd\n";
 	}
 	$N += $_ for @Nsum;
 
@@ -92,7 +93,6 @@ sub calcGS {
 		my $val = $accessibility{$d}/$N;
 		my $g = -1 * (log($val)/log(2));
 		$GS{$d} = $g;
-		#print "For d = $d, val = $val, g = $g\n";
 	}
 
 	###add GS to Flexible
@@ -225,7 +225,6 @@ sub scan35 {
 		}
 
 		if($max > 0){
-			#print STDERR "For $s, best -35 scan = $max bits\n";
 			my(@best35);
 			for(my $j = 0; $j < 6; $j++){
 				my $pos = $opts{T} - $seq10{$s}[0] - $best + $j - 2;
@@ -274,14 +273,11 @@ sub read35 {
 	### print counts
 	foreach my $base (@alpha){
 		my @temp;
-		#print STDERR "Base\t";
 		foreach my $pos (sort {$a <=> $b} keys %counts){
 		#	print STDERR "$pos\t";
 			push(@temp, $counts{$pos}{$base});
 		}
-		#print STDERR "\n";
 		my $line = join("\t", @temp);
-		#print STDERR "$base\t$line\n";
 	}
 	### create frequency table
 	foreach my $base (@alpha){
@@ -363,7 +359,6 @@ sub cherrypick35{
 	print STDERR "old count = $oldCount, test = $test\n";
 
 	until($oldCount == $test){
-		#print "Next pass of cherry picking\n";
 		my $hits35_ref = \%hits35;
 		my $Riw_ref = buildRiw($hits35_ref);
 		my %Riw = %$Riw_ref;
@@ -380,7 +375,6 @@ sub cherrypick35{
 			}
 			else{
 				push(@bits, $sum);
-				#print "$seq\t$sum\n";
 			}
 		}
 		$n = scalar(keys %hits35);

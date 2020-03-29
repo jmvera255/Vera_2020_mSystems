@@ -873,7 +873,7 @@ def align_to_cons(aligned_input, unaligned_input, left_gap, seq_length):
 					alignment_output[line, y] = line_seq_buffer[0, y]
 	return alignment_output
 
-def cherrypick_alignments(consensus_alignment, aligned_sequences, goodorbad, seq_slide, left_gap, seq_length, seqIDs):
+def cherrypick_alignments(consensus_alignment, aligned_sequences, goodorbad, seq_slide, left_gap, seq_length, seqIDs, header):
 #consensus alignment is the output from malign
 #aligned_sequences is output from align_to_cons
 #goodorbad is to be set to +1 for picking good sequences, -1 for bad sequences
@@ -913,10 +913,12 @@ def cherrypick_alignments(consensus_alignment, aligned_sequences, goodorbad, seq
 		for y in range(output_good_alignments.shape[1]):
 			output_matrix[x, y] = output_good_alignments[x, y]
 
-	with open("EcoTSS.cherrypick.scores.txt","a") as f:
+	out1 = header + "-10cherrypick.scores.txt"
+	with open(out1, "a") as f:
 		f.write("\n".join(map(str, output_lineScores)))
 		f.write("\n")
-	with open("EcoTSS.cherrypick.seqIDs.txt","a") as f2:
+	out2 = header + "-10cherrypick.seqIDs.txt"
+	with open(out1, "a") as f2:
 		f2.write("\n".join(map(str, output_seqIDs)))
 		f2.write("\n")
 	return(output_matrix, output_seqIDs)

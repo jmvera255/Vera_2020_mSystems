@@ -36,3 +36,6 @@ sed -i '1s/^/#8,6\n/' $2\.multiscan10.txt
 
 perl multiscan.pl -1 $2\.multiscan10.txt -3 $2\.cherrypick35.txt -T101 \
 $1 > $2\.multiscan.out 2> $2\.multiscan.err
+
+# remove temporary file
+rm temp.bed
