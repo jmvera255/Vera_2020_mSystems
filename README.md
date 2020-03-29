@@ -22,7 +22,7 @@ The scripts and files available in this repository were used for the work presen
 >multiscan.pl: produce final Sigma A/70 model results    
 >parse-10align.pl: parse preliminary -10 element results from get-10Consensus.py, return discriminator lengths, generate preliminary set of -35 sequences     
 >parseTSS15bp.pl: remove TSS within 15bp of an upstream TSS in the same orientation     
->get_sig70_from_fasta.sh: wrapper script for pipeline starting with 100bp promoter sequences 
+>get_sig70_from_fasta.sh: wrapper script for pipeline starting with 100bp promoter sequences    
 >get_sig70_from_TSS.sh: warpper script for pipeline starting with TSS annotations (used for *E. coli* and *C. crescentus* analysis)
 
 ### Citations
