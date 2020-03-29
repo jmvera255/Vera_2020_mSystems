@@ -31,7 +31,7 @@ while True:
 	x += 1
 	print("Sharp Alignment# = %s", x)
 	initial_shape = l_align_0.shape[0]
-	(l_align_0, seqIDs) = cherrypick_alignments(l_align_0, l_align_0, 1, 3, 5, 6, seqIDs)
+	(l_align_0, seqIDs) = cherrypick_alignments(l_align_0, l_align_0, 1, 3, 5, 6, seqIDs, sys.argv[2])
 	final_shape = l_align_0.shape[0]
 	print("# of sequences = ", final_shape)
 	l_align_0 = malign_iterate_sharper(l_align_0, 1.001, 3, 5, 6)
@@ -53,7 +53,7 @@ while True:
 	x += 1
 	print(" Alignment# = ", x)
 	initial_shape = l_align_0.shape[0]
-	(l_align_0, seqIDs) = cherrypick_alignments(l_align_0, l_align_0, 1, 3, 5, 6, seqIDs)
+	(l_align_0, seqIDs) = cherrypick_alignments(l_align_0, l_align_0, 1, 3, 5, 6, seqIDs, sys.argv[2])
 	final_shape = l_align_0.shape[0]
 	print("# of sequences = ", final_shape)
 
@@ -67,7 +67,7 @@ while True:
 	x += 1
 	print("Sharper Alignment# = ", x)
 	initial_shape = l_align_0.shape[0]
-	(l_align_0, seqIDs) = cherrypick_alignments(l_align_0, l_align_0, 1, 3, 5, 6, seqIDs)
+	(l_align_0, seqIDs) = cherrypick_alignments(l_align_0, l_align_0, 1, 3, 5, 6, seqIDs, sys.argv[2])
 	final_shape = l_align_0.shape[0]
 	print("# of sequences = ", final_shape)
 

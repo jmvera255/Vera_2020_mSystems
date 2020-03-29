@@ -55,7 +55,8 @@ sub evalFlex {
 		my $Ritotal = 0;
 		$Ritotal += $_ for @{$flexible{$TSS}};
 		if($Ritotal > 0){
-			print "$TSS\t$hits35{$TSS}[1]\t$flexible{$TSS}[1]\t" . $hits35{$TSS}[0] - 6 ."\t";
+			my $spacer = $hits35{$TSS}[0] - 6;
+			print "$TSS\t$hits35{$TSS}[1]\t$flexible{$TSS}[1]\t$spacer\t";
 			my @seq = split("",$seq10{$TSS}[1]);
 			my @outSeq;
 			for(my $i = $window10[0]; $i < $window10[0] + $window10[1]; $i++){
@@ -63,7 +64,8 @@ sub evalFlex {
 			}
 			my $out10 = join("",@outSeq);
 			print "$out10\t$flexible{$TSS}[0]\t$flexible{$TSS}[2]\t$Ritotal\t";
-			print $seq10{$TSS}[0] - 5 . "\n";
+			my $discriminator =  $seq10{$TSS}[0] - 5;
+			print "$discriminator\n";
 		}
 	}
 }

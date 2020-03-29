@@ -17,20 +17,19 @@ headerString is a string that will be appended as a header to various output fil
 currently this argument is required.
 "; exit 1; }
 
-
 # pre-process TSS BED files to get promoter sequences
 perl parseTSS15bp.pl $1 > temp.bed
 
 perl filterBed.pl -m3 temp.bed 100 > $3.up100.bed
 
-perl /opt/Perl_scripts/bedsfetch.pl $3.bed $2 \
+perl /opt/Perl_scripts/bedsfetch.pl $3.up100.bed $2 \
 > $3.up100.fa
 
 # peform sigma70 promoter element analysis
-python get-10Consensus.py $1 $3 > get-10Consensus.out \
+python get-10Consensus.py $3.up100.fa $3 > get-10Consensus.out \
 2> get-10Consensus.err
 
-perl parse-10align.pl -f $1 -a $3.-10malign.txt \
+perl parse-10align.pl -f $3.up100.fa -a $3.-10malign.txt \
 -s $3.-10malign.seqIDs.txt -T 101 -Z 10 > $3.prelim35.fa
 
 mv prelim10.spacing.txt $3.prelim10.spacing.txt
@@ -44,5 +43,7 @@ paste $3.-10malign.seqIDs.txt $3.-10malign.txt $3.prelim10.spacing.txt > $3.mult
 
 sed -i '1s/^/#8,6\n/' $3.multiscan10.txt
 
-perl multiscan.pl -1 $2\.multiscan10.txt -3 $2\.cherrypick35.txt -T101 $1 \
-> $3.multiscan.out 2> $3.multiscan.err
+perl multiscan.pl -1 $3.multiscan10.txt -3 $3.cherrypick35.txt -T101 \
+$3.up100.fa > $3.multiscan.out 2> $3.multiscan.err
+
+rm temp.bed
