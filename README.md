@@ -5,7 +5,7 @@ The scripts and files available in this repository were used for the work presen
 
 ## System Details
 
-All of the scripts provided here were run on CentOS Linux 7 using Python 2.1.16 and Perl 5.26.2
+All of the scripts provided here were run on CentOS Linux 7 using Python 2.7.16 and Perl 5.26.2
 
 ## Content
 
