@@ -1,7 +1,8 @@
 ## Genome-scale transcription–translation mapping reveals features of Zymomonas mobilis transcription units and promoters
+### Jessica M. Vera, Indro Neil Ghosh, Yaoping Zhang, Alex S. Hebert, Joshua J. Coon, Robert Landick
+### _mSystems 5:e00250-20_
 
-The scripts and files available in this repository were used for the work presented in
-**\<citation TBD\>**
+https://doi.org/10.1128/mSystems.00250-20
 
 ## System Details
 
